@@ -1,0 +1,83 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="DIGITAL.css">
+<title>Digital Clock</title>
+</head>
+<body>
+  <div class="hero">
+    <div class="container">
+      <h1 class="heading">Digital Clock</h1>
+      <div class="clock"> 
+        
+        <span id="hrs">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <span id="ampm">AM</span> 
+        <span id="day"></span> 
+        
+      </div>
+
+    </div>
+
+  </div>
+    <script>
+      
+    let hrs = document.getElementById("hrs");
+    let min = document.getElementById("min");
+    let sec = document.getElementById("sec");
+    let ampm = document.getElementById("ampm");
+    let day = document.getElementById("day"); 
+
+    setInterval(() => {
+        let currentTime = new Date();
+        let hours = currentTime.getHours();
+        let period = hours >= 12 ? 'PM' : 'AM';
+        hours = (hours % 12) || 12; 
+
+        hrs.innerHTML = (hours < 10 ? "0" : "") + hours;
+        min.innerHTML = (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
+        sec.innerHTML = (currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
+        ampm.innerHTML = period; 
+        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        let dayOfWeek = days[currentTime.getDay()];
+        day.innerHTML = dayOfWeek;
+
+      }, 1000);
+      
+      const images = [
+        "url('https://getwallpapers.com/wallpaper/full/9/2/6/22233.jpg')",
+          "url('https://getwallpapers.com/wallpaper/full/3/a/f/27440.jpg')",
+          "url('https://wallpapercave.com/uwp/uwp4305325.jpeg')",
+          "url('https://wallpapercave.com/wp/wp2153379.jpg')",
+          "url('https://getwallpapers.com/wallpaper/full/5/f/5/146421.jpg')",
+          "url('https://getwallpapers.com/wallpaper/full/4/f/1/29314.jpg')",
+          "url('https://getwallpapers.com/image/eyJpdiI6InREK05sNVJSSjY1eXBITFlhTTRcL2hRPT0iLCJ2YWx1ZSI6InVSRm9FQlVzQkFGODhsK25PNVBaZnc9PSIsIm1hYyI6ImVjMjIyNDdjZGE4YmI3M2Q5NmJmNDJiODE4ODkzYjE4M2ZlZWNhMmJjMjhhZDYwZDg4YTI4MDJjNDA2N2QxYmMifQ==')",
+        ];
+
+      let currentIndex = 0;
+
+      setInterval(() => {
+        if (currentIndex < images.length - 1) {
+        document.querySelector(".hero").style.backgroundImage = images[currentIndex];
+        currentIndex = (currentIndex + 1) % images.length;
+        
+        }else{
+
+          currentIndex = 0;
+
+        }
+    }, 15000);
+</script>
+
+</script>
+
+    
+</body>
+</html> 
